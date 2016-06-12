@@ -14,7 +14,7 @@ const canonicalID = 'accessKey1';
 const authInfo = makeAuthInfo(canonicalID);
 const namespace = 'default';
 const bucketName = 'bucketname';
-const postBody = new Buffer('I am a body');
+const postBody = Buffer.from('I am a body');
 const correctMD5 = 'be747eb4b75517bf6b3cf7c5fbb62f3a';
 const testPutBucketRequest = new DummyRequest({
     bucketName,
@@ -208,22 +208,21 @@ describe('objectPut API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}`,
-        }, new Buffer('I am another body'));
+        }, Buffer.from('I am another body'));
 
-        bucketPut(authInfo, testPutBucketRequest, locationConstraint,
-            log, () => {
+        bucketPut(authInfo, testPutBucketRequest, locationConstraint, log,
+            () => {
                 objectPut(authInfo, testPutObjectRequest, log, () => {
                     objectPut(authInfo, testPutObjectRequest2, log,
                         () => {
-                            // orphan objects don't get deleted
-                            // until the next tick
-                            // in memory
+                            // orphan objects don't get deleted until the
+                            // next tick in memory
                             process.nextTick(() => {
                                 // Data store starts at index 1
                                 assert.strictEqual(ds[0], undefined);
                                 assert.strictEqual(ds[1], undefined);
                                 assert.deepStrictEqual(ds[2].value,
-                                    new Buffer('I am another body'));
+                                    Buffer.from('I am another body'));
                                 done();
                             });
                         });

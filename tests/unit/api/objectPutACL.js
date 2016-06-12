@@ -14,7 +14,7 @@ const canonicalID = 'accessKey1';
 const authInfo = makeAuthInfo(canonicalID);
 const namespace = 'default';
 const bucketName = 'bucketname';
-const postBody = new Buffer('I am a body');
+const postBody = Buffer.from('I am a body');
 const correctMD5 = 'be747eb4b75517bf6b3cf7c5fbb62f3a';
 const objectName = 'objectName';
 const testPutBucketRequest = new DummyRequest({
@@ -227,7 +227,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +
@@ -302,7 +302,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +
@@ -362,7 +362,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +
@@ -405,7 +405,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +
@@ -447,7 +447,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +
@@ -489,7 +489,7 @@ describe('putObjectACL API', () => {
             objectKey: objectName,
             headers: {},
             url: `/${bucketName}/${objectName}?acl`,
-            post: [new Buffer(
+            post: [Buffer.from(
                 '<AccessControlPolicy xmlns=' +
                     '"http://s3.amazonaws.com/doc/2006-03-01/">' +
                   '<Owner>' +

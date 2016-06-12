@@ -20,8 +20,8 @@ const otherAccountAuthInfo = makeAuthInfo(otherAccountAccessKey);
 const otherAccountCanonicalID = otherAccountAuthInfo.getCanonicalID();
 const namespace = 'default';
 const bucketName = 'bucketname';
-const postBody = new Buffer('I am a body');
 const locationConstraint = 'us-west-1';
+const postBody = Buffer.from('I am a body');
 
 describe('objectGetACL API', () => {
     beforeEach(() => {
