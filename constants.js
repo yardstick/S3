@@ -57,7 +57,7 @@ export default {
     //      RESTBucketGET.html#RESTBucketGET-requests
     listingHardLimit: 1000,
 
-    // AWS sets a minimum size limit for parts excepted ont the last one
+    // AWS sets a minimum size limit for parts except for the last part.
     // http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadComplete.html
     minimumAllowedPartSize: 5242880,
 };
