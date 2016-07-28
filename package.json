@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/scality/S3#readme",
   "dependencies": {
-    "arsenal": "scality/Arsenal",
+    "arsenal": "scality/Arsenal#ft/versioningListingAlgo",
     "async": "~1.4.2",
     "babel-core": "^6.2.1",
     "babel-plugin-transform-es2015-destructuring": "^6.1.18",
@@ -58,6 +58,7 @@
   },
   "scripts": {
     "ft_test": "mocha tester.js --compilers js:babel-core/register",
+    "test_aws": "babel-node tests/functional/aws-node-sdk/test/legacy/test.js",
     "init": "node init.js",
     "lint": "eslint $(git ls-files '*.js')",
     "lint_md": "mdlint $(git ls-files '*.md')",

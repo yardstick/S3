@@ -112,11 +112,11 @@ describe('bucket API for getting a subset of objects from a bucket', () => {
         async.waterfall([
             next =>
                 metadata.putObjectMD(bucketName, 'key1', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'noMatchKey', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'key1/', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.listObject(bucketName, 'key', null, delimiter,
                     defaultLimit, log, next),
         ], (err, response) => {
@@ -136,11 +136,11 @@ describe('bucket API for getting a subset of objects from a bucket', () => {
         async.waterfall([
             next =>
                 metadata.putObjectMD(bucketName, 'key/one', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'key/two', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'key/three', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.listObject(bucketName, 'ke', null, delimiter,
                                     defaultLimit, log, next),
         ], (err, response) => {
@@ -214,12 +214,12 @@ describe('bucket API for getting a subset of objects from a bucket', () => {
         async.waterfall([
             next =>
                 metadata.putObjectMD(bucketName, 'next/', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'next/rollUp', '{}', log,
                     next),
-            next =>
+            (data, next) =>
                 metadata.putObjectMD(bucketName, 'next1/', '{}', log, next),
-            next =>
+            (data, next) =>
                 metadata.listObject(bucketName, 'next', null, delimiter,
                                     smallLimit, log, next),
         ], (err, response) => {

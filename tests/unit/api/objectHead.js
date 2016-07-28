@@ -59,7 +59,7 @@ describe('objectHead API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectHead(authInfo, testGetRequest, log, err => {
                             assert.deepStrictEqual(err, errors.NotModified);
                             done();
@@ -82,7 +82,7 @@ describe('objectHead API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectHead(authInfo, testGetRequest, log, err => {
                             assert.deepStrictEqual(err,
                                 errors.PreconditionFailed);
@@ -107,7 +107,7 @@ describe('objectHead API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectHead(authInfo, testGetRequest, log, err => {
                             assert.deepStrictEqual(err,
                                 errors.PreconditionFailed);
@@ -132,7 +132,7 @@ describe('objectHead API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectHead(authInfo, testGetRequest, log, err => {
                             assert.deepStrictEqual(err, errors.NotModified);
                             done();
@@ -154,7 +154,7 @@ describe('objectHead API', () => {
             locationConstraint, log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectHead(authInfo, testGetRequest, log,
                             (err, success) => {
                                 assert.strictEqual(success[userMetadataKey],

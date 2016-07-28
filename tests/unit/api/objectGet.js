@@ -61,7 +61,7 @@ describe('objectGet API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest,
                     log, (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectGet(authInfo, testGetRequest,
                             log, (err, result, responseMetaHeaders) => {
                                 assert.strictEqual(responseMetaHeaders
@@ -80,7 +80,7 @@ describe('objectGet API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectGet(authInfo, testGetRequest, log,
                             (err, dataGetInfo) => {
                                 assert.deepStrictEqual(dataGetInfo,
@@ -225,7 +225,7 @@ describe('objectGet API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         objectGet(authInfo, testGetRequest,
                         log, (err, result, responseMetaHeaders) => {
                             assert.strictEqual(result, null);

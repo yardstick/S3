@@ -34,7 +34,7 @@ function testAuth(bucketOwner, authUser, bucketPutReq, log, cb) {
             assert.strictEqual(err, undefined);
             objectPut(authUser, testPutObjectRequest, log, (err, res) => {
                 assert.strictEqual(err, null);
-                assert.strictEqual(res, correctMD5);
+                assert.strictEqual(res.contentMD5, correctMD5);
                 cb();
             });
         });
@@ -110,7 +110,7 @@ describe('objectPut API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         metadata.getObjectMD(bucketName, objectName,
                             log, (err, md) => {
                                 assert(md);
@@ -145,7 +145,7 @@ describe('objectPut API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         metadata.getObjectMD(bucketName, objectName, log,
                             (err, md) => {
                                 assert(md);
@@ -183,7 +183,7 @@ describe('objectPut API', () => {
             log, () => {
                 objectPut(authInfo, testPutObjectRequest, log,
                     (err, result) => {
-                        assert.strictEqual(result, correctMD5);
+                        assert.strictEqual(result.contentMD5, correctMD5);
                         assert.deepStrictEqual(ds, []);
                         metadata.getObjectMD(bucketName, objectName, log,
                             (err, md) => {
@@ -201,6 +201,10 @@ describe('objectPut API', () => {
             });
     });
 
+    /**
+     * now overwriting an object in versioning means adding a new version, thus
+     * old data will node be deleted just be overwriting an existing object
+     *
     it('should not leave orphans in data when overwriting an object', done => {
         const testPutObjectRequest2 = new DummyRequest({
             bucketName,
@@ -219,6 +223,7 @@ describe('objectPut API', () => {
                             // until the next tick
                             // in memory
                             process.nextTick(() => {
+                                console.log(ds);
                                 // Data store starts at index 1
                                 assert.strictEqual(ds[0], undefined);
                                 assert.strictEqual(ds[1], undefined);
@@ -230,4 +235,5 @@ describe('objectPut API', () => {
                 });
             });
     });
+    */
 });
