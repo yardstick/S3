@@ -47,6 +47,7 @@ Object.keys(acl).forEach(
                     mdBucketModelVersion: dummyBucket._mdBucketModelVersion,
                     transient: dummyBucket._transient,
                     deleted: dummyBucket._deleted,
+                    serverSideEncryption: dummyBucket._serverSideEncryption,
                 };
                 assert.strictEqual(serialized, JSON.stringify(bucketInfos));
                 done();
