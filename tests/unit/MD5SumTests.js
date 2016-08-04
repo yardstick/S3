@@ -9,8 +9,7 @@ function consume(stream) {
 
 function testMD5(payload, expectedMD5, done) {
     const dummy = new DummyRequest({}, payload);
-    const md5summer = new MD5Sum((err, digest) => {
-        assert.strictEqual(err, null);
+    const md5summer = new MD5Sum(digest => {
         assert.strictEqual(digest, expectedMD5);
         done();
     });
